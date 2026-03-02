@@ -17,11 +17,11 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#home" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-            B
+          <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xs">
+            CAT
           </div>
           <div>
-            <div className="font-semibold text-foreground text-sm tracking-wide">BWM XMD</div>
+            <div className="font-semibold text-foreground text-sm tracking-wide">CAT CPN</div>
             <div className="text-[10px] text-muted-foreground tracking-widest uppercase">Digital Innovation</div>
           </div>
         </a>

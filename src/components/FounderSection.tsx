@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Sparkles } from "lucide-react";
+import founderImg from "@/assets/founder.png";
 
 const skills = [
   { name: "Web Development", percent: 99 },
@@ -22,7 +23,7 @@ const FounderSection = () => {
             <div className="relative">
               <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden border border-border/50 border-glow">
                 <img
-                  src="https://pikaso.cdnpk.net/private/production/2877050063/upload.png?token=exp=1770854400~hmac=45bbc65509ae60981a93ca0062570584741dfc60b51678494e235a084fdafc6e&preview=1&w=340"
+                  src={founderImg}
                   alt="Oundo Nelson - Founder & Developer"
                   className="w-full h-full object-cover"
                 />
