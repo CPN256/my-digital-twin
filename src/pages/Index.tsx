@@ -1,12 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import StatsSection from "@/components/StatsSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import ConnectSection from "@/components/ConnectSection";
+import FounderSection from "@/components/FounderSection";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <HeroSection />
+      <StatsSection />
+      <ProjectsSection />
+      <TestimonialsSection />
+      <ConnectSection />
+      <FounderSection />
+      <footer className="py-8 text-center text-muted-foreground text-xs border-t border-border/50">
+        © 2026 CAT-CPN. All rights reserved.
+      </footer>
     </div>
   );
 };
