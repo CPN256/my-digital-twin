@@ -40,7 +40,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <a href="#connect" className="hidden md:block px-5 py-2 rounded-full border border-primary/40 text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-all">
+        <a href="https://cat-cpn.vercel.app" target="_blank" rel="noopener noreferrer" className="hidden md:block px-5 py-2 rounded-full border border-primary/40 text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-all">
           Sign In
         </a>
 
