@@ -5,8 +5,11 @@ import ProjectsSection from "@/components/ProjectsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ConnectSection from "@/components/ConnectSection";
 import FounderSection from "@/components/FounderSection";
+import { usePageTracking } from "@/hooks/usePageTracking";
 
 const Index = () => {
+  usePageTracking('/');
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
