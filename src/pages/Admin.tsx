@@ -5,9 +5,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { LogOut, Shield, Users, Settings, ArrowLeft, Eye, BarChart3, Edit3, Save, Plus, Trash2, TrendingUp, UserPlus, Activity } from 'lucide-react';
+import { LogOut, Shield, Users, Settings, ArrowLeft, Eye, BarChart3, Edit3, Save, Plus, Trash2, TrendingUp, UserPlus, Activity, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { ImageUpload } from '@/components/ImageUpload';
 
 interface Profile {
   id: string;
