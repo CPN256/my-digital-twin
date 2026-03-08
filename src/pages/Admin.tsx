@@ -5,9 +5,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { LogOut, Shield, Users, Settings, ArrowLeft, Eye, BarChart3, Edit3, Save, Plus, Trash2, TrendingUp, UserPlus, Activity } from 'lucide-react';
+import { LogOut, Shield, Users, Settings, ArrowLeft, Eye, BarChart3, Edit3, Save, Plus, Trash2, TrendingUp, UserPlus, Activity, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { ImageUpload } from '@/components/ImageUpload';
 
 interface Profile {
   id: string;
@@ -274,7 +275,59 @@ const Admin = () => {
                       )}
                     </div>
                     {editingSection === key ? (
-                      <Textarea value={editBuffer} onChange={(e) => setEditBuffer(e.target.value)} className="font-mono text-xs min-h-[300px] bg-background border-border" />
+                      <div className="space-y-4">
+                        {/* Image uploaders for projects */}
+                        {key === 'projects' && (() => {
+                          try {
+                            const parsed = JSON.parse(editBuffer);
+                            if (parsed.items && Array.isArray(parsed.items)) {
+                              return (
+                                <div className="space-y-3">
+                                  <p className="text-xs font-medium text-muted-foreground flex items-center gap-1"><ImageIcon size={12} /> Project Images</p>
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                                    {parsed.items.map((item: any, idx: number) => (
+                                      <div key={idx} className="space-y-1">
+                                        <p className="text-[10px] text-muted-foreground truncate">{item.title || `Project ${idx + 1}`}</p>
+                                        <ImageUpload
+                                          currentUrl={item.image}
+                                          folder="projects"
+                                          label={`Upload`}
+                                          onUpload={(url) => {
+                                            const updated = { ...parsed };
+                                            updated.items[idx].image = url;
+                                            setEditBuffer(JSON.stringify(updated, null, 2));
+                                          }}
+                                        />
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              );
+                            }
+                          } catch { /* ignore parse errors */ }
+                          return null;
+                        })()}
+
+                        {/* Image uploader for founder */}
+                        {key === 'founder' && (() => {
+                          try {
+                            const parsed = JSON.parse(editBuffer);
+                            return (
+                              <ImageUpload
+                                currentUrl={parsed.image}
+                                folder="founder"
+                                label="Founder Photo"
+                                onUpload={(url) => {
+                                  const updated = { ...parsed, image: url };
+                                  setEditBuffer(JSON.stringify(updated, null, 2));
+                                }}
+                              />
+                            );
+                          } catch { return null; }
+                        })()}
+
+                        <Textarea value={editBuffer} onChange={(e) => setEditBuffer(e.target.value)} className="font-mono text-xs min-h-[300px] bg-background border-border" />
+                      </div>
                     ) : (
                       <pre className="text-xs text-muted-foreground overflow-x-auto bg-background/50 rounded-lg p-4 max-h-40 overflow-y-auto">
                         {JSON.stringify(siteContent[key]?.content || {}, null, 2)}
