@@ -14,7 +14,7 @@ interface HeroContent {
 const fallback: HeroContent = {
   title: "Creative Productivity",
   subtitle: "Nexus CPN",
-  description: "Building powerful digital tools and solutions for everyone",
+  description: "Building powerful digital tools and solutions for everyone. We craft bots, web apps, and services that simplify your digital life.",
   badge: "◆ Welcome ◆",
   cta_text: "Explore Tools",
   version: "v2.0.25",
