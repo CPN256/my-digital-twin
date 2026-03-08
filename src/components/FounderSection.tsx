@@ -14,11 +14,17 @@ interface FounderContent {
 
 const fallback: FounderContent = {
   name: "Oundo Nelson",
-  role: "Founder & Developer",
-  bio: "Passionate about creating innovative digital solutions that make a difference.",
+  role: "Founder & Lead Developer",
+  bio: "Passionate about creating innovative digital solutions that make a difference. With over 4 years of experience in full-stack development, I build tools that empower communities and simplify workflows across Africa and beyond.",
   location: "Uganda, East Africa",
   tagline: "Creator & Problem Solver",
-  skills: [],
+  skills: [
+    { name: "Full-Stack Development", percent: 92 },
+    { name: "Bot Development", percent: 88 },
+    { name: "UI/UX Design", percent: 85 },
+    { name: "Cloud Infrastructure", percent: 78 },
+    { name: "Mobile Development", percent: 75 },
+  ],
 };
 
 const FounderSection = () => {

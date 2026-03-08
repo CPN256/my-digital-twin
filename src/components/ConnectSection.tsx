@@ -14,8 +14,12 @@ interface ConnectContent {
 const fallback: ConnectContent = {
   title: "Connect With Us",
   subtitle: "Follow us on social media for updates, tutorials, and new releases",
-  whatsapp_channel: "",
-  socials: [],
+  whatsapp_channel: "https://whatsapp.com/channel/catcpn",
+  socials: [
+    { label: "YouTube", href: "https://youtube.com/@catcpn" },
+    { label: "Instagram", href: "https://instagram.com/catcpn" },
+    { label: "WhatsApp", href: "https://wa.me/catcpn" },
+  ],
 };
 
 const colorMap: Record<string, string> = {
