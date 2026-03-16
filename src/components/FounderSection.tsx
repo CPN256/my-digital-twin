@@ -13,7 +13,7 @@ interface FounderContent {
 }
 
 const fallback: FounderContent = {
-  "image": "https://lh3.googleusercontent.com/p/AF1QipOpYUuYAEeczzNESG4MK8uf-juWw-8My_GrMW6-=s680-w680-h510-rw",
+image: "https://lh3.googleusercontent.com/p/AF1QipOpYUuYAEeczzNESG4MK8uf-juWw-8My_GrMW6-=s680-w680-h510-rw",
   name: "Oundo Nelson",
   role: "Founder & Lead Developer",
   bio: "Passionate about creating innovative digital solutions that make a difference. With over 4 years of experience in full-stack development, I build tools that empower communities and simplify workflows across Africa and beyond.",
