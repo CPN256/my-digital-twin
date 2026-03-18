@@ -37,7 +37,7 @@ const FounderSection = () => {
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex justify-center">
             <div className="relative">
               <div className="w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden border border-border/50 border-glow">
-                <img src=https://lh3.googleusercontent.com/p/AF1QipOpYUuYAEeczzNESG4MK8uf-juWw-8My_GrMW6-=s680-w680-h510-rw alt={`${c.name} - ${c.role}`} className="w-full h-full object-cover" />
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMIKVFTe6U5MmG016lFmSidB1tRi7-Cfx7UOvGL=s680-w680-h510-rw" alt={`${c.name} - ${c.role}`} className="w-full h-full object-cover" />
               </div>
               <div className="absolute -top-3 -right-3 px-3 py-1 rounded-full bg-primary text-primary-foreground text-[10px] font-medium tracking-wider uppercase">Core Founder</div>
             </div>
