@@ -8,7 +8,7 @@ const navItems = [
   { label: "Projects", icon: FolderOpen, href: "#tools" },
   { label: "Founder", icon: User, href: "#founder" },
   { label: "Connect", icon: Link, href: "#connect" },
-  { label: "Feedback", icon: MessageSquare, href: "#feedback" },
+  { label: "Comments", icon: MessageSquare, href: "#comments" },
 ];
 
 const Navbar = () => {

@@ -5,6 +5,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ConnectSection from "@/components/ConnectSection";
 import FounderSection from "@/components/FounderSection";
+import CommentsSection from "@/components/CommentsSection";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 const Index = () => {
@@ -17,10 +18,11 @@ const Index = () => {
       <StatsSection />
       <ProjectsSection />
       <TestimonialsSection />
+      <CommentsSection />
       <ConnectSection />
       <FounderSection />
       <footer className="py-8 text-center text-muted-foreground text-xs border-t border-border/50">
-        © 2026 CAT-CPN. All rights reserved.
+        © 2026 CAT CPN. All rights reserved.
       </footer>
     </div>
   );
