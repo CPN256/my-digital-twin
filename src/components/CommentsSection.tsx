@@ -27,9 +27,26 @@ const CommentsSection = () => {
     const stored = localStorage.getItem(LAST_VISIT_KEY);
     setLastVisit(stored);
     fetchComments();
-    // Update last visit time
+
+    // Realtime subscription
+    const channel = supabase
+      .channel("comments-realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "comments" },
+        (payload) => {
+          if (payload.eventType === "INSERT") {
+            setComments((prev) => [payload.new as Comment, ...prev]);
+          } else if (payload.eventType === "DELETE") {
+            setComments((prev) => prev.filter((c) => c.id !== (payload.old as Comment).id));
+          }
+        }
+      )
+      .subscribe();
+
     return () => {
       localStorage.setItem(LAST_VISIT_KEY, new Date().toISOString());
+      supabase.removeChannel(channel);
     };
   }, []);
 
@@ -70,19 +87,19 @@ const CommentsSection = () => {
 
     setMessage("");
     setLoading(false);
-    fetchComments();
+    // No need to fetchComments — realtime handles it
   };
 
   const handleDelete = async (id: string) => {
     await supabase.from("comments").delete().eq("id", id);
-    fetchComments();
+    // Realtime handles removal
   };
 
   return (
-    <section id="comments" className="py-24 px-4">
+    <section id="comments" className="py-24 px-4 section-gradient">
       <div className="container mx-auto max-w-2xl">
         <div className="text-center mb-4">
-          <span className="text-xs text-primary tracking-[0.2em] uppercase">Community</span>
+          <span className="text-xs text-primary tracking-[0.2em] uppercase font-mono">Community</span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
           <MessageCircle className="inline-block mr-2 text-primary" size={28} />
@@ -92,7 +109,7 @@ const CommentsSection = () => {
 
         {/* Post form */}
         {user ? (
-          <form onSubmit={handleSubmit} className="mb-8 card-surface rounded-xl border border-border/50 p-4 flex gap-3">
+          <form onSubmit={handleSubmit} className="mb-8 card-surface rounded-2xl border border-border/50 border-glow p-5 flex gap-3 items-center">
             <input
               type="text"
               value={message}
@@ -104,14 +121,14 @@ const CommentsSection = () => {
             <button
               type="submit"
               disabled={loading || !message.trim()}
-              className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center gap-2"
+              className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-40 flex items-center gap-2"
             >
               <Send size={14} /> Post
             </button>
           </form>
         ) : (
-          <div className="mb-8 card-surface rounded-xl border border-border/50 p-4 text-center text-muted-foreground text-sm">
-            <a href="/login" className="text-primary hover:underline">Sign in</a> to post a comment
+          <div className="mb-8 card-surface rounded-2xl border border-border/50 border-glow p-5 text-center text-muted-foreground text-sm">
+            <a href="/login" className="text-primary hover:underline font-medium">Sign in</a> to post a comment
           </div>
         )}
 
@@ -129,7 +146,7 @@ const CommentsSection = () => {
         )}
 
         {newComments.length > 0 && !showOld && lastVisit && (
-          <div className="text-center mb-4 text-xs text-primary font-medium tracking-wider uppercase">
+          <div className="text-center mb-4 text-xs text-primary font-medium tracking-wider uppercase font-mono">
             ✦ {newComments.length} New {newComments.length === 1 ? "Comment" : "Comments"} ✦
           </div>
         )}
@@ -142,25 +159,25 @@ const CommentsSection = () => {
                 key={comment.id}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
+                exit={{ opacity: 0, y: -10 }}
                 transition={{ delay: i * 0.03 }}
-                className="card-surface rounded-xl border border-border/50 p-4"
+                className="card-surface rounded-xl border border-border/50 p-4 hover:border-primary/20 transition-colors"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[11px] font-bold shrink-0">
                         {comment.display_name[0]?.toUpperCase()}
                       </div>
                       <span className="text-sm font-medium text-foreground">{comment.display_name}</span>
-                      <span className="text-[10px] text-muted-foreground">
+                      <span className="text-[10px] text-muted-foreground font-mono">
                         {format(new Date(comment.created_at), "MMM d, h:mm a")}
                       </span>
                       {lastVisit && comment.created_at > lastVisit && (
-                        <span className="text-[9px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full font-medium">NEW</span>
+                        <span className="text-[9px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full font-medium animate-pulse">NEW</span>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground pl-8">{comment.message}</p>
+                    <p className="text-sm text-muted-foreground pl-9 leading-relaxed">{comment.message}</p>
                   </div>
                   {user?.id === comment.user_id && (
                     <button onClick={() => handleDelete(comment.id)} className="text-muted-foreground hover:text-destructive transition-colors p-1">
