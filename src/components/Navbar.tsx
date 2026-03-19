@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Menu, X, Home, FolderOpen, User, MessageSquare, Link, Shield } from "lucide-react";
+import { Menu, X, Home, FolderOpen, User, MessageSquare, Link, Shield, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
+import { usePWAInstall } from "@/hooks/usePWAInstall";
 
 const navItems = [
   { label: "Home", icon: Home, href: "#home" },
@@ -14,6 +15,7 @@ const navItems = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, isAdmin } = useAuth();
+  const { canInstall, install } = usePWAInstall();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -36,6 +38,15 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-2">
+          {canInstall && (
+            <button
+              onClick={install}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all"
+              title="Install CAT CPN app"
+            >
+              <Download size={14} /> Install App
+            </button>
+          )}
           {isAdmin && (
             <a href="/admin" className="w-9 h-9 rounded-full border border-primary/40 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all" title="Admin Panel">
               <Shield size={16} />
@@ -62,6 +73,11 @@ const Navbar = () => {
                   <item.icon size={16} /> {item.label}
                 </a>
               ))}
+              {canInstall && (
+                <button onClick={() => { install(); setOpen(false); }} className="flex items-center gap-3 px-4 py-3 rounded-lg text-primary hover:bg-secondary transition-all font-medium">
+                  <Download size={16} /> Install App
+                </button>
+              )}
               {isAdmin && (
                 <a href="/admin" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-3 rounded-lg text-primary hover:bg-secondary transition-all">
                   <Shield size={16} /> Admin Panel

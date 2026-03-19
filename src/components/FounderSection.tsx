@@ -44,7 +44,7 @@ const FounderSection = () => {
                 <img
                   src="https://lh3.googleusercontent.com/p/AF1QipMIKVFTe6U5MmG016lFmSidB1tRi7-Cfx7UOvGL=s680-w680-h510-rw"
                   alt={`${c.name} - ${c.role}`}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full bg-primary text-primary-foreground text-[10px] font-medium tracking-wider uppercase whitespace-nowrap">
