@@ -24,41 +24,88 @@ const HeroSection = () => {
   const { data: c } = useSiteContent<HeroContent>("hero", fallback);
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-16 overflow-hidden">
-      <div className="absolute inset-8 md:inset-16 lg:inset-24 dashed-frame pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="home" className="relative min-h-[100svh] flex flex-col items-center justify-center px-4 pt-14 overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/4 rounded-full blur-[160px] pointer-events-none" />
 
-      <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative mb-8">
-        <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border border-dashed border-primary/50 flex flex-col items-center justify-center">
-          <span className="text-3xl md:text-4xl font-bold text-primary text-glow">CAT</span>
-          <span className="text-xs text-primary/70 tracking-[0.3em]">✦CPN✦</span>
+      {/* Logo mark */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative mb-10"
+      >
+        <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-primary/20 bg-primary/5 flex flex-col items-center justify-center">
+          <span className="text-2xl md:text-3xl font-bold text-primary" style={{ lineHeight: 1 }}>CAT</span>
+          <span className="text-[10px] text-primary/60 tracking-[0.3em] mt-1">CPN</span>
         </div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="px-6 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs tracking-[0.2em] uppercase mb-8">
+      {/* Badge */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="px-4 py-1 rounded-full border border-border/50 bg-secondary/50 text-muted-foreground text-[11px] tracking-[0.15em] uppercase mb-6"
+      >
         {c.badge}
       </motion.div>
 
-      <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight max-w-4xl">
-        {c.title} <br /> {c.subtitle} <span className="text-primary text-glow">CPN</span>
+      {/* Headline */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center max-w-3xl"
+        style={{ lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}
+      >
+        {c.title}
+        <span className="text-primary"> CPN</span>
       </motion.h1>
 
-      <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="text-muted-foreground text-lg mt-6 text-center max-w-lg">
+      {/* Description */}
+      <motion.p
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="text-muted-foreground text-base md:text-lg mt-5 text-center max-w-md"
+        style={{ textWrap: 'pretty' }}
+      >
         {c.description}
       </motion.p>
 
-      <motion.a href="#tools" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="mt-10 px-8 py-4 rounded-lg bg-secondary border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all flex items-center gap-3 group">
+      {/* CTA */}
+      <motion.a
+        href="#tools"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.65, duration: 0.5 }}
+        className="mt-8 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-all active:scale-[0.97] flex items-center gap-2 group"
+      >
         {c.cta_text}
-        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+        <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
       </motion.a>
 
-      <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }} className="absolute bottom-24 right-8 md:right-28 text-xs text-primary/60 font-mono">
+      {/* Version */}
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="absolute bottom-20 right-6 md:right-16 text-[10px] text-muted-foreground/50 font-mono"
+      >
         {c.version}
       </motion.span>
 
-      <motion.a href="#stats" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="absolute bottom-8 flex flex-col items-center gap-2 text-muted-foreground text-xs tracking-[0.2em] uppercase hover:text-primary transition-colors">
-        Scroll Down
-        <ChevronDown size={18} className="animate-bounce" />
+      {/* Scroll indicator */}
+      <motion.a
+        href="#video"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="absolute bottom-6 flex flex-col items-center gap-1.5 text-muted-foreground/40 text-[10px] tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors"
+      >
+        Scroll
+        <ChevronDown size={14} className="animate-bounce" />
       </motion.a>
     </section>
   );
