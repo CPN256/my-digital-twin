@@ -40,7 +40,15 @@ const FounderSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="flex justify-center">
             <div className="relative">
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 shadow-[0_0_40px_hsl(168_100%_47%/0.15)]">
+              {/* Animated glow ring */}
+              <motion.div
+                aria-hidden
+                className="absolute -inset-4 rounded-full blur-2xl opacity-60"
+                style={{ background: "conic-gradient(from 0deg, hsl(var(--primary)/0.5), transparent, hsl(190 100% 55%/0.5), transparent, hsl(var(--primary)/0.5))" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              />
+              <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/40 shadow-[0_0_60px_hsl(168_100%_47%/0.25)]">
                 <img
                   src="https://lh3.googleusercontent.com/p/AF1QipMIKVFTe6U5MmG016lFmSidB1tRi7-Cfx7UOvGL=s680-w680-h510-rw"
                   alt={`${c.name} - ${c.role}`}
