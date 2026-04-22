@@ -1,29 +1,37 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import VideoSection from "@/components/VideoSection";
+import SkillsMarquee from "@/components/SkillsMarquee";
 import StatsSection from "@/components/StatsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ConnectSection from "@/components/ConnectSection";
 import FounderSection from "@/components/FounderSection";
 import CommentsSection from "@/components/CommentsSection";
+import FAQSection from "@/components/FAQSection";
+import NewsletterSection from "@/components/NewsletterSection";
 import FooterSection from "@/components/FooterSection";
+import AuroraBackground from "@/components/AuroraBackground";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 const Index = () => {
   usePageTracking('/');
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen">
+      <AuroraBackground />
       <Navbar />
       <HeroSection />
       <VideoSection />
+      <SkillsMarquee />
       <StatsSection />
       <ProjectsSection />
       <TestimonialsSection />
+      <FAQSection />
       <CommentsSection />
       <ConnectSection />
       <FounderSection />
+      <NewsletterSection />
       <FooterSection />
     </div>
   );

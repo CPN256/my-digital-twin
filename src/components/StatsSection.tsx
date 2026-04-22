@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, GitFork, Eye, AlertCircle, RefreshCw, ExternalLink } from "lucide-react";
+import CountUp from "react-countup";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const iconMap: Record<string, any> = { Stars: Star, Forks: GitFork, Watchers: Eye, Issues: AlertCircle };
@@ -44,13 +45,29 @@ const StatsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {c.items.map((stat, i) => {
             const Icon = iconMap[stat.label] || Star;
-            return (
-              <motion.div key={stat.label} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="card-surface rounded-xl p-6 border border-border/50 border-glow text-center">
-                <Icon size={20} className="text-primary mx-auto mb-3" />
-                <div className="text-3xl md:text-4xl font-bold text-foreground mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-                <span className="inline-block mt-2 text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full animate-pulse-glow">LIVE</span>
+            {/* numeric extracted below */}
+              const numeric = parseInt(String(stat.value).replace(/[^0-9]/g, ""), 10) || 0;
+              return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-2xl p-6 border border-border/50 bg-card/40 backdrop-blur-md text-center overflow-hidden hover:border-primary/50 transition-colors"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <Icon size={20} className="text-primary mx-auto mb-3" />
+                  <div className="text-3xl md:text-4xl font-bold text-foreground mb-1 tabular-nums">
+                    <CountUp end={numeric} duration={2.2} separator="," enableScrollSpy scrollSpyOnce />
+                  </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <span className="inline-block mt-2 text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full animate-pulse-glow">LIVE</span>
+                </div>
               </motion.div>
+              );
             );
           })}
         </div>
