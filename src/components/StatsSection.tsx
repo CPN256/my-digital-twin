@@ -45,9 +45,8 @@ const StatsSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {c.items.map((stat, i) => {
             const Icon = iconMap[stat.label] || Star;
-            {/* numeric extracted below */}
-              const numeric = parseInt(String(stat.value).replace(/[^0-9]/g, ""), 10) || 0;
-              return (
+            const numeric = parseInt(String(stat.value).replace(/[^0-9]/g, ""), 10) || 0;
+            return (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
@@ -67,7 +66,6 @@ const StatsSection = () => {
                   <span className="inline-block mt-2 text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full animate-pulse-glow">LIVE</span>
                 </div>
               </motion.div>
-              );
             );
           })}
         </div>
