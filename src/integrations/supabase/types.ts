@@ -98,6 +98,74 @@ export type Database = {
         }
         Relationships: []
       }
+      forum_replies: {
+        Row: {
+          body: string
+          created_at: string
+          display_name: string
+          id: string
+          thread_id: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          thread_id: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          thread_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_replies_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "forum_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forum_threads: {
+        Row: {
+          body: string
+          category: string
+          created_at: string
+          display_name: string
+          id: string
+          pinned: boolean
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string
+          category?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          pinned?: boolean
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          category?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          pinned?: boolean
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
