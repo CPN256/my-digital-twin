@@ -78,9 +78,13 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden text-foreground active:scale-95 transition-transform">
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button onClick={() => setOpen(!open)} className="text-foreground active:scale-95 transition-transform">
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+
       </div>
 
       {/* Mobile menu */}
