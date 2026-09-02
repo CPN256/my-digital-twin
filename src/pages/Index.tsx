@@ -12,6 +12,8 @@ import FAQSection from "@/components/FAQSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import FooterSection from "@/components/FooterSection";
 import AuroraBackground from "@/components/AuroraBackground";
+import ScrollProgress from "@/components/ScrollProgress";
+import BentoSection from "@/components/BentoSection";
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 const Index = () => {
@@ -20,13 +22,16 @@ const Index = () => {
   return (
     <div className="relative min-h-screen">
       <AuroraBackground />
+      <ScrollProgress />
       <Navbar />
       <HeroSection />
       <VideoSection />
       <SkillsMarquee />
+      <BentoSection />
       <StatsSection />
       <ProjectsSection />
       <TestimonialsSection />
+
       <FAQSection />
       <CommentsSection />
       <ConnectSection />
