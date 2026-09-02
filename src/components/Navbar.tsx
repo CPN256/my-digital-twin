@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { Menu, X, Home, FolderOpen, User, MessageSquare, Link, Shield, Download, Play } from "lucide-react";
+import { Menu, X, Home, FolderOpen, User, MessageSquare, Link, Shield, Download, Play, Newspaper, Tag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
-  { label: "Home", icon: Home, href: "#home" },
-  { label: "Video", icon: Play, href: "#video" },
-  { label: "Projects", icon: FolderOpen, href: "#tools" },
-  { label: "Founder", icon: User, href: "#founder" },
-  { label: "Connect", icon: Link, href: "#connect" },
-  { label: "Comments", icon: MessageSquare, href: "#comments" },
+  { label: "Home", icon: Home, href: "/#home" },
+  { label: "Video", icon: Play, href: "/#video" },
+  { label: "Projects", icon: FolderOpen, href: "/#tools" },
+  { label: "Founder", icon: User, href: "/#founder" },
+  { label: "Connect", icon: Link, href: "/#connect" },
+  { label: "Comments", icon: MessageSquare, href: "/#comments" },
+  { label: "Blog", icon: Newspaper, href: "/blog" },
+  { label: "Pricing", icon: Tag, href: "/pricing" },
 ];
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
