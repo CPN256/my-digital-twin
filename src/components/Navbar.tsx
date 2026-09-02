@@ -50,7 +50,9 @@ const Navbar = () => {
 
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           {canInstall && (
+
             <button
               onClick={install}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary text-foreground text-xs hover:bg-secondary/80 transition-all active:scale-[0.97]"
