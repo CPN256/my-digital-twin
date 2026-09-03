@@ -8,6 +8,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ConnectSection from "@/components/ConnectSection";
 import FounderSection from "@/components/FounderSection";
 import CommentsSection from "@/components/CommentsSection";
+import ForumCTA from "@/components/ForumCTA";
 import FAQSection from "@/components/FAQSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import FooterSection from "@/components/FooterSection";
@@ -33,6 +34,7 @@ const Index = () => {
       <TestimonialsSection />
 
       <FAQSection />
+      <ForumCTA />
       <CommentsSection />
       <ConnectSection />
       <FounderSection />
