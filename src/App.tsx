@@ -14,6 +14,7 @@ const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Pricing = lazy(() => import("./pages/Pricing"));
+const Forum = lazy(() => import("./pages/Forum"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => (
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/pricing" element={<Pricing />} />
+                <Route path="/forum" element={<Forum />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
