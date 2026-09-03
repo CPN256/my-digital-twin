@@ -12,6 +12,7 @@ const navItems = [
   { label: "Founder", icon: User, href: "/#founder" },
   { label: "Connect", icon: Link, href: "/#connect" },
   { label: "Comments", icon: MessageSquare, href: "/#comments" },
+  { label: "Forum", icon: MessagesSquare, href: "/forum" },
   { label: "Blog", icon: Newspaper, href: "/blog" },
   { label: "Pricing", icon: Tag, href: "/pricing" },
 ];
