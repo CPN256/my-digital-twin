@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Home, FolderOpen, User, MessageSquare, Link, Shield, Download, Play, Newspaper, Tag, MessagesSquare } from "lucide-react";
+import { Menu, X, Home, FolderOpen, User, MessageSquare, Shield, Download, Newspaper, Tag, MessagesSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
@@ -26,7 +26,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-2xl border-b border-border/30">
       <div className="container mx-auto flex items-center justify-between h-14 px-4">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2.5 group">
+        <a href="/" className="flex items-center gap-2.5 group">
           <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold text-[10px] tracking-tight group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-200">
             CAT
           </div>
