@@ -34,7 +34,10 @@ const NAV: [TabType, any, string][] = [
 ];
 
 const sectionLabels: Record<string, string> = {
-  hero: 'Hero Section',
+  hero: 'Hero Section (landing)',
+  about: 'About Page',
+  projects_page: 'What We Create — Page Intro',
+  contact: 'Contact Page',
   stats: 'Stats Section',
   projects: 'Projects Section',
   testimonials: 'Testimonials',
