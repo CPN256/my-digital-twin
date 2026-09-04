@@ -6,16 +6,15 @@ import { usePWAInstall } from "@/hooks/usePWAInstall";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
-  { label: "Home", icon: Home, href: "/#home" },
-  { label: "Video", icon: Play, href: "/#video" },
-  { label: "Projects", icon: FolderOpen, href: "/#tools" },
-  { label: "Founder", icon: User, href: "/#founder" },
-  { label: "Connect", icon: Link, href: "/#connect" },
-  { label: "Comments", icon: MessageSquare, href: "/#comments" },
-  { label: "Forum", icon: MessagesSquare, href: "/forum" },
+  { label: "Home", icon: Home, href: "/" },
+  { label: "About", icon: User, href: "/about" },
+  { label: "What We Create", icon: FolderOpen, href: "/projects" },
   { label: "Blog", icon: Newspaper, href: "/blog" },
+  { label: "Forum", icon: MessagesSquare, href: "/forum" },
   { label: "Pricing", icon: Tag, href: "/pricing" },
+  { label: "Contact", icon: MessageSquare, href: "/contact" },
 ];
+
 
 
 const Navbar = () => {
