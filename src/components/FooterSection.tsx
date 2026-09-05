@@ -1,25 +1,24 @@
-import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ExternalLink, Github, Youtube, Instagram, MessageCircle } from "lucide-react";
 
 const contactLinks = [
-  { icon: Mail, label: "catcpn@gmail.com", href: "mailto:catcpn@gmail.com" },
-  { icon: Phone, label: "+256 XXX XXX XXX", href: "tel:+256000000000" },
-  { icon: MapPin, label: "Uganda, East Africa", href: "#" },
+  { icon: Mail, label: "catphoenix6@gmail.com", href: "mailto:catphoenix6@gmail.com" },
+  { icon: Phone, label: "+256 750 713 834", href: "tel:+256750713834" },
+  { icon: MapPin, label: "Kampala, Uganda", href: "https://maps.google.com/?q=Kampala,Uganda" },
 ];
 
 const socialLinks = [
-  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@catcpn", color: "hover:text-red-400" },
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com/catcpn", color: "hover:text-pink-400" },
-  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/catcpn", color: "hover:text-green-400" },
-  { icon: Github, label: "GitHub", href: "https://github.com/catcpn", color: "hover:text-foreground" },
+  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@CatPhoenix", color: "hover:text-red-500" },
+  { icon: Instagram, label: "Instagram", href: "https://instagram.com/catphoenix3", color: "hover:text-pink-500" },
+  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/256750713834", color: "hover:text-green-500" },
+  { icon: Github, label: "GitHub", href: "https://github.com/Ph462", color: "hover:text-foreground" },
 ];
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Projects", href: "#tools" },
-  { label: "Founder", href: "#founder" },
-  { label: "Comments", href: "#comments" },
-  { label: "Connect", href: "#connect" },
+  { label: "Home", href: "/" },
+  { label: "What We Create", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const FooterSection = () => {
@@ -87,24 +86,9 @@ const FooterSection = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-border/30 pt-6 pb-6 text-center">
+        <div className="border-t border-border/30 pt-6 pb-8 text-center">
           <p className="text-xs text-muted-foreground">© 2026 CAT CPN. All rights reserved.</p>
         </div>
-      </div>
-
-      {/* Marquee */}
-      <div className="overflow-hidden bg-primary py-3">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="flex whitespace-nowrap"
-        >
-          {Array.from({ length: 10 }).map((_, i) => (
-            <span key={i} className="text-primary-foreground text-xs font-bold tracking-[0.3em] uppercase mx-8">
-              ✦ Created and Organised by CAT PHOENIX ✦
-            </span>
-          ))}
-        </motion.div>
       </div>
     </footer>
   );

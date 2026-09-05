@@ -1,8 +1,18 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Youtube, Instagram, Phone } from "lucide-react";
+import { MessageCircle, Youtube, Instagram, Phone, Github, Mail, Send, Facebook, Twitter, Music2 } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-const iconMap: Record<string, any> = { YouTube: Youtube, Instagram: Instagram, WhatsApp: Phone };
+const iconMap: Record<string, any> = {
+  YouTube: Youtube,
+  Instagram: Instagram,
+  WhatsApp: Phone,
+  GitHub: Github,
+  Email: Mail,
+  Telegram: Send,
+  Facebook: Facebook,
+  X: Twitter,
+  TikTok: Music2,
+};
 
 interface ConnectContent {
   title: string;
@@ -16,9 +26,11 @@ const fallback: ConnectContent = {
   subtitle: "Follow us on social media for updates, tutorials, and new releases",
   whatsapp_channel: "https://whatsapp.com/channel/catcpn",
   socials: [
-    { label: "YouTube", href: "https://youtube.com/@catcpn" },
-    { label: "Instagram", href: "https://instagram.com/catcpn" },
-    { label: "WhatsApp", href: "https://wa.me/catcpn" },
+    { label: "YouTube", href: "https://www.youtube.com/@CatPhoenix" },
+    { label: "Instagram", href: "https://instagram.com/catphoenix3" },
+    { label: "WhatsApp", href: "https://wa.me/256750713834" },
+    { label: "GitHub", href: "https://github.com/Ph462" },
+    { label: "Email", href: "mailto:catphoenix6@gmail.com" },
   ],
 };
 
@@ -26,6 +38,8 @@ const colorMap: Record<string, string> = {
   YouTube: "hover:text-red-400",
   Instagram: "hover:text-pink-400",
   WhatsApp: "hover:text-green-400",
+  GitHub: "hover:text-foreground",
+  Email: "hover:text-primary",
 };
 
 const ConnectSection = () => {
@@ -43,7 +57,7 @@ const ConnectSection = () => {
           </motion.a>
         )}
 
-        <div className="flex justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {c.socials.map((s) => {
             const Icon = iconMap[s.label] || MessageCircle;
             return (
