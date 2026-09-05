@@ -18,8 +18,8 @@ interface ContactContent {
 const fallback: ContactContent = {
   title: "Contact CAT CPN",
   subtitle: "Questions, project ideas or partnership requests — reach us through any channel below.",
-  email: "catphoenixnelson@gmail.com",
-  phone: "+256 700 000 000",
+  email: "catphoenix6@gmail.com",
+  phone: "+256 750 713 834",
   location: "Kampala, Uganda",
   hours: "Mon – Sat, 9:00 – 18:00 EAT",
 };

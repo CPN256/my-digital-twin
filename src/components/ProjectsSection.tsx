@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Bot, Globe, Server, Smartphone, ExternalLink } from "lucide-react";
+import { Bot, Globe, Server, Smartphone, ExternalLink, MessageCircle, Code2, Clapperboard, Film, Cloud, Sparkles, ListChecks, LucideIcon } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const tabs = [
@@ -9,6 +9,25 @@ const tabs = [
   { label: "Services", icon: Server },
   { label: "Apps", icon: Smartphone },
 ];
+
+const toolIcons: Record<string, LucideIcon> = {
+  "CPN Bot": Bot,
+  "AI Bots": Sparkles,
+  "CAT CHAT": MessageCircle,
+  "Cat APIs": Code2,
+  "Entertainment Surge": Clapperboard,
+  "CPN Movies": Film,
+  "CPN Media": Cloud,
+  "CPN Mobile": Smartphone,
+  "Task Tracker": ListChecks,
+};
+
+const categoryIcons: Record<string, LucideIcon> = {
+  Bots: Bot,
+  "Web Tools": Globe,
+  Services: Server,
+  Apps: Smartphone,
+};
 
 interface ProjectItem {
   title: string;
@@ -67,14 +86,24 @@ const ProjectsSection = () => {
             currentProjects.map((project, i) => (
               <motion.a key={project.title} href={project.link} target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group card-surface rounded-xl border border-border/50 overflow-hidden hover:border-primary/40 transition-all">
                 <div className="aspect-video bg-muted/30 flex items-center justify-center overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                  <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full">{project.category}</span>
+                    <span className="inline-flex items-center gap-1.5 text-[10px] text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                      {(() => { const CIcon = categoryIcons[project.category] || Globe; return <CIcon size={11} />; })()}
+                      {project.category}
+                    </span>
                     <span className="text-[10px] text-primary animate-pulse-glow">LIVE</span>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-1">{project.title}</h3>
+                  <h3 className="flex items-center gap-2 font-semibold text-foreground mb-1">
+                    {(() => { const TIcon = toolIcons[project.title] || categoryIcons[project.category] || Globe; return (
+                      <span className="w-7 h-7 rounded-lg bg-primary/10 border border-primary/25 flex items-center justify-center text-primary shrink-0">
+                        <TIcon size={14} />
+                      </span>
+                    ); })()}
+                    {project.title}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-3">{project.description}</p>
                   <div className="flex items-center gap-1 text-primary text-xs">
                     {project.status} <ExternalLink size={10} />
