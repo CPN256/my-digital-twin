@@ -24,15 +24,21 @@ const fallback: TestimonialsContent = {
 const TestimonialsSection = () => {
   const { data: c } = useSiteContent<TestimonialsContent>("testimonials", fallback);
 
+  const items = [...c.items, ...c.items];
+
   return (
-    <section id="feedback" className="py-24 px-4 section-gradient">
-      <div className="container mx-auto max-w-4xl">
+    <section id="feedback" className="py-24 section-gradient overflow-hidden">
+      <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">{c.title}</h2>
         <p className="text-muted-foreground text-center mb-12">{c.subtitle}</p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {c.items.map((t, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="card-surface rounded-xl p-6 border border-border/50 border-glow">
+      <div className="relative group">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-background to-transparent" />
+        <div className="flex gap-6 w-max animate-[marquee_45s_linear_infinite] group-hover:[animation-play-state:paused] px-4">
+          {items.map((t, i) => (
+            <div key={i} className="card-surface rounded-xl p-6 border border-border/50 border-glow w-[320px] shrink-0">
               <Quote size={20} className="text-primary/50 mb-4" />
               <p className="text-foreground mb-6 italic">"{t.text}"</p>
               <div className="flex items-center gap-3">
@@ -42,12 +48,13 @@ const TestimonialsSection = () => {
                   <div className="text-xs text-muted-foreground">{t.date}</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 };
+
 
 export default TestimonialsSection;
