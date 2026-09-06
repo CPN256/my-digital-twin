@@ -43,6 +43,9 @@ const sectionLabels: Record<string, string> = {
   testimonials: 'Testimonials',
   founder: 'Founder Section',
   connect: 'Connect Section',
+  socials: 'Socials Page — Platform Links',
+  pricing: 'Pricing Page',
+  faq: 'FAQ Section',
 };
 
 const emptyPost = (): Partial<BlogPost> => ({

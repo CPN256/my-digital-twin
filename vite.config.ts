@@ -20,7 +20,20 @@ export default defineConfig(({ mode }) => ({
       includeAssets: ["favicon.ico", "robots.txt"],
       workbox: {
         navigateFallbackDenylist: [/^\/~oauth/],
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+        globPatterns: ["**/*.{js,css,html,ico,woff2}"],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === "image",
+            handler: "NetworkOnly",
+          },
+          {
+            urlPattern: /supabase\.co\/.*/i,
+            handler: "NetworkOnly",
+          },
+        ],
       },
       manifest: {
         name: "CAT CPN - Digital Innovation",
