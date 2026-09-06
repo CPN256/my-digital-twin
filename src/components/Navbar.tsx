@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Home, FolderOpen, User, MessageSquare, Shield, Download, Newspaper, Tag, MessagesSquare } from "lucide-react";
+import { Menu, X, Home, FolderOpen, User, MessageSquare, Shield, Download, Newspaper, Tag, MessagesSquare, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
@@ -12,6 +12,7 @@ const navItems = [
   { label: "Blog", icon: Newspaper, href: "/blog" },
   { label: "Forum", icon: MessagesSquare, href: "/forum" },
   { label: "Pricing", icon: Tag, href: "/pricing" },
+  { label: "Socials", icon: Share2, href: "/socials" },
   { label: "Contact", icon: MessageSquare, href: "/contact" },
 ];
 
