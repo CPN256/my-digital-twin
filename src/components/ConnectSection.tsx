@@ -34,13 +34,18 @@ const fallback: ConnectContent = {
   ],
 };
 
-const colorMap: Record<string, string> = {
-  YouTube: "hover:text-red-400",
-  Instagram: "hover:text-pink-400",
-  WhatsApp: "hover:text-green-400",
-  GitHub: "hover:text-foreground",
-  Email: "hover:text-primary",
+const brandMap: Record<string, { color: string; bg: string; border: string }> = {
+  YouTube: { color: "text-[#FF0000]", bg: "bg-[#FF0000]/10", border: "border-[#FF0000]/40 hover:border-[#FF0000]" },
+  Instagram: { color: "text-[#E1306C]", bg: "bg-[#E1306C]/10", border: "border-[#E1306C]/40 hover:border-[#E1306C]" },
+  WhatsApp: { color: "text-[#25D366]", bg: "bg-[#25D366]/10", border: "border-[#25D366]/40 hover:border-[#25D366]" },
+  GitHub: { color: "text-foreground", bg: "bg-foreground/10", border: "border-foreground/30 hover:border-foreground" },
+  Email: { color: "text-[#EA4335]", bg: "bg-[#EA4335]/10", border: "border-[#EA4335]/40 hover:border-[#EA4335]" },
+  Telegram: { color: "text-[#229ED9]", bg: "bg-[#229ED9]/10", border: "border-[#229ED9]/40 hover:border-[#229ED9]" },
+  Facebook: { color: "text-[#1877F2]", bg: "bg-[#1877F2]/10", border: "border-[#1877F2]/40 hover:border-[#1877F2]" },
+  X: { color: "text-foreground", bg: "bg-foreground/10", border: "border-foreground/30 hover:border-foreground" },
+  TikTok: { color: "text-[#00F2EA]", bg: "bg-[#00F2EA]/10", border: "border-[#00F2EA]/40 hover:border-[#00F2EA]" },
 };
+
 
 const ConnectSection = () => {
   const { data: c } = useSiteContent<ConnectContent>("connect", fallback);
