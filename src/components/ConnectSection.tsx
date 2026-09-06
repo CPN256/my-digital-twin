@@ -62,16 +62,18 @@ const ConnectSection = () => {
           </motion.a>
         )}
 
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+        <div className="flex flex-wrap justify-center gap-5 sm:gap-7">
           {c.socials.map((s) => {
             const Icon = iconMap[s.label] || MessageCircle;
+            const b = brandMap[s.label] || { color: "text-primary", bg: "bg-primary/10", border: "border-primary/40 hover:border-primary" };
             return (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className={`w-14 h-14 rounded-full border border-border flex items-center justify-center text-muted-foreground ${colorMap[s.label] || "hover:text-primary"} hover:border-primary/40 transition-all`}>
-                <Icon size={22} />
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label} aria-label={s.label} className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-2 flex items-center justify-center ${b.bg} ${b.border} ${b.color} hover:scale-110 transition-all`}>
+                <Icon size={36} strokeWidth={1.8} />
               </a>
             );
           })}
         </div>
+
       </div>
     </section>
   );
