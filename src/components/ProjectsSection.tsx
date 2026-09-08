@@ -48,7 +48,7 @@ const fallback: ProjectsContent = {
   title: "What We Create",
   subtitle: "Check out everything we have made!",
   items: [
-    { title: "CPN Bot", description: "A multi-purpose Discord bot with moderation, music, and fun commands.", status: "Active", category: "Bots", image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80", link: "#" },
+    { title: "CPN Bot", description: "A multi-purpose Discord bot with moderation, music, and fun commands.", status: "Active", category: "Bots", image: "#", link: "#" },
     { title: "Auto-Mod Bot", description: "Automated moderation bot for Telegram groups with spam detection.", status: "Active", category: "Bots", image: "https://images.unsplash.com/photo-1531746790095-e5e1408e10f8?w=600&q=80", link: "#" },
     { title: "WhatsApp Helper", description: "Customer support automation bot for WhatsApp Business.", status: "Active", category: "Bots", image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&q=80", link: "#" },
     { title: "Portfolio Builder", description: "Generate stunning developer portfolios in minutes.", status: "Active", category: "Web Tools", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80", link: "#" },
