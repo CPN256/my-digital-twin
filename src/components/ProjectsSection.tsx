@@ -43,11 +43,6 @@ interface ProjectsContent {
   subtitle: string;
   items: ProjectItem[];
 }
-
-const fallback: ProjectsContent = {
-  title: "What We Create",
-  subtitle: "Check out everything we have made!",
-  items: [ ],
 };
 
 const ProjectsSection = () => {
