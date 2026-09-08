@@ -47,18 +47,7 @@ interface ProjectsContent {
 const fallback: ProjectsContent = {
   title: "What We Create",
   subtitle: "Check out everything we have made!",
-  items: [
-    { title: "CPN Bot", description: "A multi-purpose Discord bot with moderation, music, and fun commands.", status: "Active", category: "Bots", image: "#", link: "" },
-    { title: "Auto-Mod Bot", description: "Automated moderation bot for Telegram groups with spam detection.", status: "Active", category: "Bots", image: "https://images.unsplash.com/photo-1531746790095-e5e1408e10f8?w=600&q=80", link: "#" },
-    { title: "WhatsApp Helper", description: "Customer support automation bot for WhatsApp Business.", status: "Active", category: "Bots", image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&q=80", link: "#" },
-    { title: "Portfolio Builder", description: "Generate stunning developer portfolios in minutes.", status: "Active", category: "Web Tools", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80", link: "#" },
-    { title: "Link Shortener", description: "Custom branded short URLs with analytics tracking.", status: "Active", category: "Web Tools", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", link: "#" },
-    { title: "SEO Analyzer", description: "Full website SEO audit with actionable improvement tips.", status: "Active", category: "Web Tools", image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=80", link: "#" },
-    { title: "Cloud Hosting", description: "Affordable cloud hosting for small to medium projects.", status: "Active", category: "Services", image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80", link: "#" },
-    { title: "API Gateway", description: "Managed API gateway with rate limiting and monitoring.", status: "Active", category: "Services", image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80", link: "#" },
-    { title: "CPN Mobile", description: "All-in-one mobile companion app for CPN tools on the go.", status: "Beta", category: "Apps", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80", link: "#" },
-    { title: "Task Tracker", description: "Lightweight task management app with team collaboration.", status: "Active", category: "Apps", image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600&q=80", link: "#" },
-  ],
+  items: [ ],
 };
 
 const ProjectsSection = () => {
