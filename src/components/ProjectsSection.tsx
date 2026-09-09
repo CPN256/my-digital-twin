@@ -43,7 +43,6 @@ interface ProjectsContent {
   subtitle: string;
   items: ProjectItem[];
 }
-};
 
 const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState("Bots");
