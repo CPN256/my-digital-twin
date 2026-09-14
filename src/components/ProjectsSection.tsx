@@ -45,6 +45,67 @@ interface ProjectsContent {
 }
 
 const ProjectsSection = () => {
+  const fallback: ProjectsContent = {
+  title: "What We Create",
+  subtitle:
+    "Explore CAT CPN projects, bots, web tools, cloud services and mobile applications.",
+  items: [
+    {
+      title: "CAT CPN WhatsApp Bot",
+      description:
+        "A powerful WhatsApp automation bot built with Node.js and Baileys.",
+      status: "Active",
+      category: "Bots",
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "CAT CPN Panel",
+      description:
+        "A modern control panel for managing and running CAT CPN bot projects.",
+      status: "In Development",
+      category: "Cloud Services",
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "CAT CPN Web Tools",
+      description:
+        "Useful online tools and utilities designed to make everyday digital tasks easier.",
+      status: "Active",
+      category: "Web Tools",
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "CAT CPN APIs",
+      description:
+        "Developer-focused APIs and services for powering web and bot applications.",
+      status: "In Development",
+      category: "APIs",
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "CAT CPN Mobile Apps",
+      description:
+        "Mobile application projects focused on useful digital experiences.",
+      status: "In Development",
+      category: "Mobile Apps",
+      image: "/placeholder.svg",
+      link: "#",
+    },
+    {
+      title: "CAT CPN Digital Projects",
+      description:
+        "Experimental and community-focused projects developed by CAT CPN.",
+      status: "Active",
+      category: "Other",
+      image: "/placeholder.svg",
+      link: "#",
+    },
+  ],
+};
   const [activeTab, setActiveTab] = useState("Bots");
   const { data: c } = useSiteContent<ProjectsContent>("projects", fallback);
 
