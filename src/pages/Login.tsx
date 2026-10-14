@@ -16,11 +16,15 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [bio, setBio] = useState('');
+  const [phone, setPhone] = useState('');
+  const [dob, setDob] = useState('');
   const navigate = useNavigate();
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) navigate('/admin');
+    if (user) navigate('/profile');
   }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,20 +41,31 @@ const Login = () => {
         if (error) throw error;
         setMessage('Check your email for a password reset link.');
       } else if (isSignUp) {
+        if (!fullName.trim()) throw new Error('Please enter your full name.');
+        if (phone && !/^\+?[0-9 ]{7,20}$/.test(phone)) throw new Error('Enter a valid phone number.');
+        if (dob && new Date(dob) > new Date()) throw new Error('Date of birth cannot be in the future.');
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: window.location.origin },
+          options: {
+            emailRedirectTo: window.location.origin,
+            data: {
+              display_name: fullName.trim().slice(0, 80),
+              bio: bio.trim().slice(0, 500),
+              phone: phone.trim(),
+              date_of_birth: dob,
+            },
+          },
         });
         if (error) throw error;
-        setMessage('Check your email to confirm your account.');
+        setMessage('Account created! Check your email (Gmail) to confirm your account.');
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (error) throw error;
-        navigate('/admin');
+        navigate('/profile');
       }
     } catch (err: any) {
       setError(err.message);
@@ -129,6 +144,28 @@ const Login = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {isSignUp && (
+              <>
+                <div>
+                  <Label htmlFor="fullName" className="text-muted-foreground">Full name</Label>
+                  <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required maxLength={80} className="mt-1 bg-input border-border" placeholder="Your name" />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <Label htmlFor="phone" className="text-muted-foreground">Phone number</Label>
+                    <Input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} maxLength={20} className="mt-1 bg-input border-border" placeholder="+256 7..." />
+                  </div>
+                  <div>
+                    <Label htmlFor="dob" className="text-muted-foreground">Date of birth</Label>
+                    <Input id="dob" type="date" value={dob} onChange={(e) => setDob(e.target.value)} className="mt-1 bg-input border-border" />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="bio" className="text-muted-foreground">Bio</Label>
+                  <textarea id="bio" value={bio} onChange={(e) => setBio(e.target.value)} maxLength={500} rows={3} className="mt-1 w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground" placeholder="Tell us about yourself" />
+                </div>
+              </>
+            )}
             <div>
               <Label htmlFor="email" className="text-muted-foreground">Email</Label>
               <Input
