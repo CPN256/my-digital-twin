@@ -71,10 +71,10 @@ const Navbar = () => {
             </a>
           )}
           <a
-            href={user ? "/admin" : "/login"}
+            href={user ? "/profile" : "/login"}
             className="px-4 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium hover:opacity-90 transition-all active:scale-[0.97]"
           >
-            {user ? "Dashboard" : "Sign In"}
+            {user ? "My Profile" : "Sign In"}
           </a>
         </div>
 
@@ -123,11 +123,11 @@ const Navbar = () => {
                 </a>
               )}
               <a
-                href={user ? "/admin" : "/login"}
+                href={user ? "/profile" : "/login"}
                 onClick={() => setOpen(false)}
                 className="mt-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98]"
               >
-                {user ? "Dashboard" : "Sign In"}
+                {user ? "My Profile" : "Sign In"}
               </a>
             </div>
           </motion.div>
