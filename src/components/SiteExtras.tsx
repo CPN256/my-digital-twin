@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp, Music, VolumeX, Search, X } from "lucide-react";
+import { ArrowUp, Search, X } from "lucide-react";
 
 /* 1. Glowing cursor trail (desktop only) */
 const CursorGlow = () => {
@@ -29,38 +29,6 @@ const CursorGlow = () => {
   );
 };
 
-/* 2. Ambient music player (generated ambient pad, no file needed) */
-const MusicPlayer = () => {
-  const [on, setOn] = useState(false);
-  const ctx = useRef<AudioContext | null>(null);
-  const gain = useRef<GainNode | null>(null);
-  const toggle = () => {
-    if (!ctx.current) {
-      const c = new AudioContext();
-      const g = c.createGain(); g.gain.value = 0; g.connect(c.destination);
-      [110, 164.8, 220, 277.2].forEach((f, i) => {
-        const o = c.createOscillator(); o.type = i % 2 ? "triangle" : "sine"; o.frequency.value = f;
-        const lfo = c.createOscillator(); lfo.frequency.value = 0.1 + i * 0.05;
-        const lg = c.createGain(); lg.gain.value = 2; lfo.connect(lg).connect(o.frequency);
-        const og = c.createGain(); og.gain.value = 0.05; o.connect(og).connect(g);
-        o.start(); lfo.start();
-      });
-      ctx.current = c; gain.current = g;
-    }
-    const c = ctx.current!, g = gain.current!;
-    c.resume();
-    g.gain.linearRampToValueAtTime(on ? 0 : 0.6, c.currentTime + 1);
-    setOn(!on);
-  };
-  return (
-    <button onClick={toggle} aria-label={on ? "Mute music" : "Play music"}
-      className="fixed bottom-5 left-5 z-50 flex items-center gap-2 rounded-full border border-primary/40 bg-background/80 backdrop-blur px-4 py-2 text-xs font-mono text-primary shadow-lg hover:bg-primary/10 transition">
-      {on ? <Music size={14} className="animate-pulse" /> : <VolumeX size={14} />}
-      {on ? "Vibes on" : "Play vibes"}
-      {on && <span className="flex gap-0.5 items-end h-3">{[0, 1, 2].map(i => <span key={i} className="w-0.5 bg-primary animate-[pulse_0.8s_ease-in-out_infinite]" style={{ height: `${6 + i * 3}px`, animationDelay: `${i * 0.2}s` }} />)}</span>}
-    </button>
-  );
-};
 
 /* 3. Back to top */
 const BackToTop = () => {
@@ -167,7 +135,6 @@ const SiteExtras = () => (
     <Preloader />
     <CursorGlow />
     <TiltEffect />
-    <MusicPlayer />
     <Mascot />
     <CommandPalette />
     <BackToTop />
