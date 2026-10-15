@@ -128,7 +128,7 @@ const ProjectsSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentProjects.length > 0 ? (
             currentProjects.map((project, i) => (
-              <motion.a key={project.title} href={project.link} target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group card-surface rounded-xl border border-border/50 overflow-hidden hover:border-primary/40 transition-all">
+              <motion.a key={project.title} href={project.link} target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} data-tilt className="group card-surface rounded-xl border border-border/50 overflow-hidden hover:border-primary/40 transition-all">
                 <div className="aspect-video bg-muted/30 flex items-center justify-center overflow-hidden">
                   <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
                 </div>

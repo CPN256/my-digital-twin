@@ -53,7 +53,7 @@ const Index = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
               >
-                <Link to={p.to} className="group card-surface border border-border/50 rounded-2xl p-6 block h-full hover:border-primary/40 transition-all">
+                <Link to={p.to} data-tilt className="group card-surface border border-border/50 rounded-2xl p-6 block h-full transition-transform hover:border-primary/40 transition-all">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-4">
                     <p.icon size={16} />
                   </div>
