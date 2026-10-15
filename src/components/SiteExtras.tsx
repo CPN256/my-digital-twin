@@ -97,21 +97,6 @@ const CommandPalette = () => {
   );
 };
 
-/* 6. Cat mascot that peeks and waves */
-const Mascot = () => {
-  const [msg, setMsg] = useState<string | null>(null);
-  const lines = ["Meow! Welcome to CAT CPN 🐾", "Try Ctrl + K to jump around!", "Check out our bots 🤖", "Join the forum and say hi!"];
-  return (
-    <div className="fixed bottom-20 left-5 z-50 hidden sm:flex items-end gap-2">
-      <motion.button aria-label="CAT CPN mascot" animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 3 }}
-        onClick={() => { setMsg(lines[Math.floor(Math.random() * lines.length)]); setTimeout(() => setMsg(null), 3000); }}
-        className="text-4xl drop-shadow-[0_0_12px_hsl(var(--primary)/0.6)]">🐱</motion.button>
-      <AnimatePresence>{msg && (
-        <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="mb-6 rounded-xl border border-primary/30 bg-card px-3 py-2 text-xs">{msg}</motion.div>)}
-      </AnimatePresence>
-    </div>
-  );
-};
 
 /* 7. 3D tilt for any element with data-tilt */
 const TiltEffect = () => {
@@ -135,7 +120,6 @@ const SiteExtras = () => (
     <Preloader />
     <CursorGlow />
     <TiltEffect />
-    <Mascot />
     <CommandPalette />
     <BackToTop />
   </>
