@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Send, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import confetti from "canvas-confetti";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ const NewsletterSection = () => {
     }
     setDone(true);
     setEmail("");
+    confetti({ particleCount: 140, spread: 80, origin: { y: 0.7 } });
     toast.success("You're in! Welcome to CAT CPN.");
   };
 
