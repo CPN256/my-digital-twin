@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import { motion } from "framer-motion";
 import PageShell from "@/components/PageShell";
 import FounderSection from "@/components/FounderSection";
@@ -30,6 +31,7 @@ const fallback: AboutContent = {
 };
 
 const About = () => {
+  useSeo({ title: "About CAT CPN & Founder CAT PHOENIX | Software Development Uganda", description: "Meet CAT CPN, the Ugandan software studio founded by CAT PHOENIX (Oundo Nelson), building WhatsApp bots, web applications and digital tools.", path: "/about", jsonLd: breadcrumb([{ name: "About", path: "/about" }]) });
   usePageTracking("/about");
   const { data: c } = useSiteContent<AboutContent>("about", fallback);
 

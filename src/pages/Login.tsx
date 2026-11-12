@@ -1,3 +1,4 @@
+import { useSeo } from "@/lib/seo";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
@@ -9,6 +10,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { LogIn, UserPlus, ArrowLeft, Mail } from 'lucide-react';
 
 const Login = () => {
+  useSeo({ title: "Sign In | CAT CPN", description: "Sign in or create your CAT CPN account.", path: "/login", noindex: true });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);

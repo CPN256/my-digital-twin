@@ -1,3 +1,4 @@
+import { useSeo } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
@@ -9,6 +10,7 @@ import { toast } from "sonner";
 import { ArrowLeft, LogOut, Save } from "lucide-react";
 
 const Profile = () => {
+  useSeo({ title: "My Profile | CAT CPN", description: "Manage your CAT CPN profile.", path: "/profile", noindex: true });
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ display_name: "", bio: "", phone: "", date_of_birth: "", avatar_url: "" });

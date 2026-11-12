@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Check, ShoppingCart } from "lucide-react";
@@ -135,11 +136,11 @@ const fallback: PricingContent = {
 };
 
 const Pricing = () => {
+  useSeo({ title: "Pricing \u2013 Bots, APIs & Custom Web Builds | CAT CPN", description: "Simple CAT CPN pricing for WhatsApp bots, developer APIs, team chat and custom web and mobile app development in Uganda. Order via WhatsApp.", path: "/pricing", jsonLd: breadcrumb([{ name: "Pricing", path: "/pricing" }]) });
   usePageTracking("/pricing");
   const { data: c } = useSiteContent<PricingContent>("pricing", fallback);
 
   useEffect(() => {
-    document.title = "Pricing — CAT CPN bots, APIs and custom builds";
   }, []);
 
   return (

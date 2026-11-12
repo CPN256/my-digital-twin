@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import { motion } from "framer-motion";
 import {
   Youtube, Instagram, Github, Mail, Phone, Send, Facebook, Twitter, Music2,
@@ -64,6 +65,7 @@ const fallback: SocialsContent = {
 };
 
 const Socials = () => {
+  useSeo({ title: "CAT CPN on Social Media \u2013 YouTube, Instagram, WhatsApp & GitHub", description: "Follow CAT CPN and CAT PHOENIX on YouTube, Instagram, WhatsApp, GitHub and more for project updates, releases and tutorials.", path: "/socials", jsonLd: breadcrumb([{ name: "Socials", path: "/socials" }]) });
   usePageTracking("/socials");
   const { data: c } = useSiteContent<SocialsContent>("socials", fallback);
 

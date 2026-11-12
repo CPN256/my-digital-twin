@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,6 +32,7 @@ interface Reply {
 const CATEGORIES = ["General", "Bots", "Web Tools", "APIs", "Help"];
 
 const Forum = () => {
+  useSeo({ title: "Community Forum \u2013 Ask Questions & Discuss | CAT CPN", description: "Join the CAT CPN community forum to ask questions about our bots, web tools and apps, share ideas and get help from the team.", path: "/forum", jsonLd: breadcrumb([{ name: "Forum", path: "/forum" }]) });
   usePageTracking("/forum");
   const { user } = useAuth();
   const [threads, setThreads] = useState<Thread[]>([]);
@@ -45,7 +47,6 @@ const Forum = () => {
   const [replyText, setReplyText] = useState("");
 
   useEffect(() => {
-    document.title = "Forum — Ask questions & discuss CAT CPN";
     load();
 
     const channel = supabase
