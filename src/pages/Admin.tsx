@@ -1,3 +1,4 @@
+import { useSeo } from "@/lib/seo";
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
@@ -53,6 +54,7 @@ const emptyPost = (): Partial<BlogPost> => ({
 });
 
 const Admin = () => {
+  useSeo({ title: "Admin Dashboard | CAT CPN", description: "CAT CPN admin dashboard.", path: "/admin", noindex: true });
   const { user, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabType>('overview');

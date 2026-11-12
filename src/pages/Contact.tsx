@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import ConnectSection from "@/components/ConnectSection";
@@ -25,6 +26,7 @@ const fallback: ContactContent = {
 };
 
 const Contact = () => {
+  useSeo({ title: "Contact CAT CPN \u2013 Email, Phone & WhatsApp | Kampala, Uganda", description: "Contact CAT CPN in Kampala, Uganda by email, phone or WhatsApp for bot development, web applications and digital tool projects.", path: "/contact", jsonLd: breadcrumb([{ name: "Contact", path: "/contact" }]) });
   usePageTracking("/contact");
   const { data: c } = useSiteContent<ContactContent>("contact", fallback);
 

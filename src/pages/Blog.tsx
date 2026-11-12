@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -16,12 +17,12 @@ interface Post {
 }
 
 const Blog = () => {
+  useSeo({ title: "Blog \u2013 Build Logs, Tutorials & Updates | CAT CPN", description: "Engineering notes, tutorials and product updates from CAT CPN on bots, APIs, web development in Uganda and building for African networks.", path: "/blog", jsonLd: breadcrumb([{ name: "Blog", path: "/blog" }]) });
   usePageTracking("/blog");
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Blog — CAT CPN build logs, tutorials & updates";
     (async () => {
       const { data } = await supabase
         .from("blog_posts")

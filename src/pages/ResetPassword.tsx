@@ -1,3 +1,4 @@
+import { useSeo } from "@/lib/seo";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
@@ -7,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { ArrowLeft, KeyRound } from 'lucide-react';
 
 const ResetPassword = () => {
+  useSeo({ title: "Reset Password | CAT CPN", description: "Reset your CAT CPN account password.", path: "/reset-password", noindex: true });
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);

@@ -1,3 +1,4 @@
+import { useSeo } from "@/lib/seo";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, User, FolderOpen, Newspaper, Tag, MessagesSquare, Mail } from "lucide-react";
@@ -23,6 +24,7 @@ const pages = [
 ];
 
 const Index = () => {
+  useSeo({ title: "CAT CPN \u2013 Bots, Web Tools, Apps & Digital Solutions", description: "Explore CAT CPN, a Ugandan digital technology project building innovative bots, web tools, applications, entertainment platforms and digital solutions.", path: "/", jsonLd: { "@context": "https://schema.org", "@type": "WebPage", name: "CAT CPN – Bots, Web Tools, Apps & Digital Solutions", url: "https://catcpn.cc.cd/" } });
   usePageTracking("/");
 
   return (

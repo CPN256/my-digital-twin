@@ -1,7 +1,9 @@
+import { useSeo } from "@/lib/seo";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = () => {
+  useSeo({ title: "Page Not Found | CAT CPN", description: "The page you are looking for does not exist on CAT CPN.", path: "/404", noindex: true });
   const location = useLocation();
 
   useEffect(() => {

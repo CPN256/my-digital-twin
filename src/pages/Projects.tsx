@@ -1,3 +1,4 @@
+import { useSeo, breadcrumb } from "@/lib/seo";
 import PageShell from "@/components/PageShell";
 import ProjectsSection from "@/components/ProjectsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -13,6 +14,7 @@ const fallback: PageIntro = {
 };
 
 const Projects = () => {
+  useSeo({ title: "Projects \u2013 WhatsApp Bots, Web Apps & Entertainment Platforms | CAT CPN", description: "See what CAT CPN creates: WhatsApp bots, AI bots, CAT CHAT, Cat APIs, movie and entertainment platforms, mobile apps and online productivity tools.", path: "/projects", jsonLd: breadcrumb([{ name: "Projects", path: "/projects" }]) });
   usePageTracking("/projects");
   const { data: c } = useSiteContent<PageIntro>("projects_page", fallback);
 
