@@ -1,7 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Star, GitFork, Eye, AlertCircle, RefreshCw, ExternalLink, Github } from "lucide-react";
-import CountUp from "react-countup";
+
+const CountUp = ({ end, duration = 1.6 }: { end: number; duration?: number; separator?: string }) => {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    let raf = 0; const start = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / (duration * 1000));
+      setV(Math.round(end * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [end, duration]);
+  return <>{v.toLocaleString()}</>;
+};
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const iconMap: Record<string, any> = { Stars: Star, Forks: GitFork, Watchers: Eye, Issues: AlertCircle };
