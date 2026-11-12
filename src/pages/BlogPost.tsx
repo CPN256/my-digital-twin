@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { usePageTracking } from "@/hooks/usePageTracking";
+import { useSeo, breadcrumb, canonicalFor } from "@/lib/seo";
 
 interface Post {
   id: string;
@@ -23,18 +24,27 @@ const BlogPost = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await supabase.from("blog_posts").select("*").eq("slug", slug).maybeSingle();
+      const { data } = await supabase.from("blog_posts").select("*").eq("slug", slug).eq("published", true).maybeSingle();
       setPost((data as Post) ?? null);
       setLoading(false);
     })();
   }, [slug]);
 
-  useEffect(() => {
-    if (!post) return;
-    document.title = `${post.title} — CAT CPN`;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta && post.excerpt) meta.setAttribute("content", post.excerpt);
-  }, [post]);
+  const path = `/blog/${slug}`;
+  useSeo({
+    title: post ? `${post.title} | CAT CPN Blog` : "Article | CAT CPN Blog",
+    description: post?.excerpt || "Read this article on the CAT CPN blog.",
+    path,
+    noindex: !loading && !post,
+    type: "article",
+    image: post?.cover_image || undefined,
+    jsonLd: post ? [
+      { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.excerpt ?? undefined,
+        image: post.cover_image ?? undefined, datePublished: post.created_at, mainEntityOfPage: canonicalFor(path),
+        author: { "@type": "Organization", name: "CAT CPN" }, publisher: { "@type": "Organization", name: "CAT CPN" } },
+      breadcrumb([{ name: "Blog", path: "/blog" }, { name: post.title, path }]),
+    ] : undefined,
+  });
 
   return (
     <main className="min-h-screen bg-background px-4 py-20">
