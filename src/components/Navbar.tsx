@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Menu, X, Home, FolderOpen, User, MessageSquare, Shield, Download, Newspaper, Tag, MessagesSquare, Share2 } from "lucide-react";
+import { Menu, X, Home, FolderOpen, User, MessageSquare, Shield, Newspaper, Tag, MessagesSquare, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
-import { usePWAInstall } from "@/hooks/usePWAInstall";
+import InstallApp from "@/components/InstallApp";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
@@ -21,7 +21,6 @@ const navItems = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, isAdmin } = useAuth();
-  const { canInstall, install } = usePWAInstall();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-2xl border-b border-border/30">
@@ -52,15 +51,7 @@ const Navbar = () => {
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-2">
           <ThemeToggle />
-          {canInstall && (
-
-            <button
-              onClick={install}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary text-foreground text-xs hover:bg-secondary/80 transition-all active:scale-[0.97]"
-            >
-              <Download size={12} /> Install
-            </button>
-          )}
+          <InstallApp />
           {isAdmin && (
             <a
               href="/admin"
@@ -109,14 +100,7 @@ const Navbar = () => {
                   <item.icon size={15} /> {item.label}
                 </a>
               ))}
-              {canInstall && (
-                <button
-                  onClick={() => { install(); setOpen(false); }}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-primary hover:bg-secondary/50 transition-all active:scale-[0.98]"
-                >
-                  <Download size={15} /> Install App
-                </button>
-              )}
+              <InstallApp mobile />
               {isAdmin && (
                 <a href="/admin" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-primary hover:bg-secondary/50 transition-all">
                   <Shield size={15} /> Admin Panel
