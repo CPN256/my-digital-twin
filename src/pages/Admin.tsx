@@ -14,6 +14,8 @@ import {
 import { toast } from 'sonner';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { ImageUpload } from '@/components/ImageUpload';
+import BiographyEditor from '@/components/BiographyEditor';
+import { aboutSchema, resolveAboutContent } from '@/lib/about-content';
 
 interface Profile { id: string; user_id: string; display_name: string | null; created_at: string; }
 interface RoleRow { id: string; user_id: string; role: 'admin' | 'moderator' | 'user'; }
@@ -36,7 +38,7 @@ const NAV: [TabType, any, string][] = [
 
 const sectionLabels: Record<string, string> = {
   hero: 'Hero Section (landing)',
-  about: 'About Page',
+  about: 'About Me — CAT PHOENIX Biography',
   projects_page: 'What We Create — Page Intro',
   contact: 'Contact Page',
   stats: 'Stats Section',
@@ -156,12 +158,13 @@ const Admin = () => {
   /* ---------- content ---------- */
   const startEdit = (key: string) => {
     setEditingSection(key);
-    setEditBuffer(JSON.stringify(siteContent[key]?.content || {}, null, 2));
+    setEditBuffer(JSON.stringify(key === 'about' ? resolveAboutContent(siteContent[key]?.content) : siteContent[key]?.content || {}, null, 2));
   };
 
   const saveEdit = async (key: string) => {
     try {
       const parsed = JSON.parse(editBuffer);
+      if (key === 'about') aboutSchema.parse(parsed);
       const payload = { section_key: key, content: parsed, updated_at: new Date().toISOString(), updated_by: user?.id };
       const { error } = siteContent[key]
         ? await supabase.from('site_content').update(payload).eq('section_key', key)
@@ -360,6 +363,9 @@ const Admin = () => {
 
                       {editingSection === key ? (
                         <div className="space-y-4">
+                          {key === 'about' ? (
+                            <BiographyEditor value={resolveAboutContent(parsed)} onChange={(content) => setEditBuffer(JSON.stringify(content, null, 2))} />
+                          ) : <>
                           {/* quick fields */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {['title', 'subtitle', 'description', 'name', 'role'].filter((f) => f in parsed).map((f) => (
@@ -403,6 +409,7 @@ const Admin = () => {
                           )}
 
                           <Textarea value={editBuffer} onChange={(e) => setEditBuffer(e.target.value)} className="font-mono text-xs min-h-[280px]" />
+                          </>}
                         </div>
                       ) : (
                         <pre className="text-xs text-muted-foreground overflow-x-auto bg-background/50 rounded-lg p-4 max-h-40 overflow-y-auto">

@@ -117,6 +117,50 @@
   }
 }
 
+/* The personal identity page keeps its own monochrome editorial palette. */
+.identity-page {
+  --background: 240 6% 5%;
+  --foreground: 0 0% 95%;
+  --card: 240 4% 9%;
+  --card-foreground: 0 0% 95%;
+  --primary: 0 0% 88%;
+  --primary-foreground: 240 6% 5%;
+  --secondary: 240 4% 13%;
+  --secondary-foreground: 0 0% 95%;
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 3% 65%;
+  --accent: 0 0% 88%;
+  --accent-foreground: 240 6% 5%;
+  --border: 240 4% 21%;
+  --input: 240 4% 21%;
+  --ring: 0 0% 80%;
+  --surface: 240 4% 9%;
+  --glow: 0 0% 65%;
+  --identity-photo-mask: linear-gradient(to right, transparent, black 28%);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  letter-spacing: 0;
+}
+.identity-portrait {
+  mask-image: var(--identity-photo-mask);
+  -webkit-mask-image: var(--identity-photo-mask);
+  filter: grayscale(1);
+  content-visibility: visible;
+}
+.identity-section { scroll-margin-top: 90px; }
+.identity-page p, .identity-page h1, .identity-page h2 { overflow-wrap: break-word; }
+.identity-rule { border-top: 1px solid hsl(var(--border)); }
+@media (max-width: 767px) {
+  .identity-portrait { mask-image: none; -webkit-mask-image: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .identity-page *, .identity-page *::before, .identity-page *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @layer utilities {
   .text-glow {
     text-shadow: 0 0 20px hsl(var(--glow) / 0.5), 0 0 40px hsl(var(--glow) / 0.2);
